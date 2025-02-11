@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace Learn_CSharp_Programming_freeCodeCamp
 {
@@ -266,7 +268,7 @@ namespace Learn_CSharp_Programming_freeCodeCamp
 
             /*
             [#017] TryParse function
-            */
+            
             bool success = true;
 
             while (success)
@@ -283,8 +285,213 @@ namespace Learn_CSharp_Programming_freeCodeCamp
                     Console.WriteLine("Failed to convert!");
                 }
             }
+            */
+
+            /*
+            [#018] Times table
+
+            Console.WriteLine("Enter a number: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 1; i <= 10; i++)
+            {
+                //Console.WriteLine("{0} x {1} = {2}", i, num, i * num);
+                Console.WriteLine($"{i} x { num} = {i*num}");
+            }
+            */
+
+            /*
+            [#019] Fizz buzz game
+
+            for (int i = 1; i <= 15; i++)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    Console.WriteLine("FizzBuzz");
+                }
+                else if (i%3 == 0)
+                {
+                    Console.WriteLine("Fizz");
+                } else if (i%5 == 0)
+                {
+                    Console.WriteLine("Buzz");
+                } else
+                {
+                    Console.WriteLine(i);
+                }
+            }
+            */
+
+            /*
+            [#020] Verbatim string literal
+
+            string speech = "He saod \"something\"";
+            string path = "C:\\Users\\William\\Desktop\\C# Course";
+            Console.WriteLine(path);
+            Console.WriteLine(speech);
+
+            path = @"C:\Users\William\Desktop\C# Course"
+            Console.WriteLine(path);
+            */
+
+            /*
+            [#021] String interpolation
+
+            string name = "William";
+            int age = 27;
+
+            Console.WriteLine("Your name is " + name + " and your age is " + age);
+
+            Console.WriteLine($"Your name is {name} and your age is {age}");
+            Console.WriteLine("Your name is {0} and your age is {1}", name, age);
+
+            Console.WriteLine(string.Concat("Your name is ", nameof, " and your age is ", age));
+
+            string[] names = new string[] { "William", "Test", "Test" };
+            Console.WriteLine(string.Concat(names);
+            */
+
+            /*
+            [#022] Empty string
+
+            Console.Write("Enter name: ");
+            string name = Console.ReadLine();
+            
+            if (name != "")
+            {
+                Console.WriteLine($"Your name is {name}");
+            } else
+            {
+                Console.WriteLine("Name is empty");
+            }
+            */
+
+            /*
+            [#023] String Equals function
+
+            string message = "Hello";
+            string compare = "Hello";
+
+            if (message == compare)
+            {
+                Console.WriteLine("Same");
+            } else
+            {
+                Console.WriteLine("Diff");
+            }
+            */
+
+            /*
+            [#024] String iteration looping
+            
+            string message = "C# is awesome";
+
+            for (int i = 0; i < message.Length; i++)
+            {
+                Console.Write(message[i]);
+                Thread.Sleep(50);
+            }
+            Console.WriteLine();
+            Console.WriteLine(message.Contains("C"));
+
+            bool contains = false;
+
+            for (int i = 0; i < message.Length; i++)
+            {
+                if (message[i].Equals('C'))
+                {
+                    contains = true;
+                }
+            }
+
+            Console.WriteLine(contains);
+            */
+
+            /*
+            [#025] String IsNullOrEmpty function
+
+            Console.WriteLine("Enter your name: ");
+            string name = Console.ReadLine();
+
+            Console.WriteLine($"Your name is {name}");
+
+            if (name != "")
+            {
+                Console.WriteLine("0");
+            }
+
+            if (!name.Equals(""))
+            {
+                Console.WriteLine("1");
+            }
+
+            // better choice, because checks NULL case
+            if (!string.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("2");
+            }
+            */
+
+            /*
+            [#026] Print string in reverse
+            
+
+            Console.WriteLine("Enter your message: ");
+            string message = Console.ReadLine();
+
+            for (int i = 0; i < message.Length; i++)
+            {
+                Console.Write(message[i]);
+            }
+
+            Console.Write('-');
+
+            // hint: type "forr" to bring up IntelliSense shortcut
+            for (int i = message.Length - 1; i >= 0; i--)
+            {
+                Console.Write(message[i]);
+            }
+            */
+
+            /*
+            [#027] Password checker
+            
+            Console.Write("Enter password: ");
+            string password = Console.ReadLine();
+
+            Console.Write("Enter password again: ");
+            string passwordC = Console.ReadLine();
+
+            if (!password.Equals(string.Empty))
+            {
+                if (!passwordC.Equals(string.Empty))
+                {
+                    if (password.Length >= 6 && passwordC.Length >= 6)
+                    {
+                        if (password.Equals(passwordC))
+                        {
+                            Console.WriteLine("Passwords match");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Passwords do not match");
+                        }
+                    } else
+                    {
+                        Console.WriteLine("Please enter 6 or more characters!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a password confirmation.");
+                }
+            } else
+            {
+                Console.WriteLine("Please enter a password.");
+            }
+            */
 
             Console.ReadLine();
-}
-}
+        }
+    }
 }
