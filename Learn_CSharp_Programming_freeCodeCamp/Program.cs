@@ -491,7 +491,279 @@ namespace Learn_CSharp_Programming_freeCodeCamp
             }
             */
 
+            /*
+            [#028] Arrays
+
+            int num1 = 5;
+            int num2 = 10;
+            int num3 = 15;
+            int num4 = 30;
+
+            Console.WriteLine($"{num1} {num2} {num3} {num4}");
+
+            int[] numbers = new int[4];
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Console.Write("Enter a number: ");
+                numbers[i] = Convert.ToInt32(Console.ReadLine());
+            }
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Console.Write($"{numbers[i]} ");
+            }
+
+            const int angleCount = 3;
+            int[] angles = new int[angleCount];
+
+            for (int i = 0; i < angles.Length; i++)
+            {
+                Console.Write($"Enter angle {i+1}: ");
+                angles[i] = Convert.ToInt32(Console.ReadLine() );
+            }
+
+            int angleSum = 0;
+            foreach (int angle in angles)
+            {
+                angleSum += angle;
+            }
+
+            Console.WriteLine(angleSum==180 ? "Valid" : "Invalid");
+            */
+
+            /*
+            [#029] Array sorting
+
+            int[] numbers = new int[]
+            {
+                9, 2, 0, 5, 5, 6, 7, 8, 9
+            };
+
+            Array.Sort(numbers);
+
+            foreach (int number in numbers)
+            {
+                Console.Write($"{number} ");
+            }
+            */
+
+            /*
+            [#030] Array reversal
+
+            int[] numbers = new int[]
+            {
+                0, 1, 2, 3, 4, 5
+            };
+
+            Array.Reverse(numbers);
+
+            foreach (int number in numbers)
+            {
+                Console.Write($"{number} ");
+            }
+            */
+
+            /*
+            [#031] Array clearing
+
+            int[] numbers = new int[]
+            {
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+            };
+
+            Array.Clear(numbers, 5, 5);
+
+            for (int i = 5; i < 10; i++)
+            {
+                numbers[i] = default;
+            }
+
+            foreach (int number in numbers)
+            {
+                Console.Write($"{number} ");
+            }
+            */
+
+            /*
+            [#031] Array IndexOf
+            
+            int[] numbers = new int[]
+            {
+                90, 199, 22, 50, 30
+            };
+
+            Console.WriteLine("Enter number to search: ");
+            int search = Convert.ToInt32(Console.ReadLine());
+
+            int position = Array.IndexOf(numbers, search, 0, 2);
+
+            if (position > -1)
+            {
+                Console.WriteLine($"Number {search} has been found at position {position + 1}");
+            } else
+            {
+                Console.WriteLine($"Number {search} has not been found");
+            }
+            */
+
+            /* 
+            [#032] Lists <>
+
+            List<int> listNumbers = new List<int>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write("Enter a number: ");
+                listNumbers.Add(Convert.ToInt32(Console.ReadLine()));
+            }
+
+            for (int i = 0; i < listNumbers.Count; i++)
+            {
+                Console.WriteLine(listNumbers[i]);
+            }
+
+            foreach (var item in listNumbers)
+            {
+                Console.WriteLine(item);
+            }
+            */
+
+            /* 
+            [#033] Dictionary
+
+            Dictionary<string, string> teachers = new Dictionary<string, string>
+            {
+                { "Math", "William" },
+                { "Science", "Test" }
+            };
+
+            if (teachers.TryGetValue("Math", out string teacher))
+            {
+                Console.WriteLine(teachers["Math"]);
+                teachers["Math"] = "New Teach";
+            } else
+            {
+                Console.WriteLine("Math teacher not found");
+            }
+
+            foreach (var item in teachers)
+            {
+                Console.WriteLine($"{item.Key} - {item.Value}");
+            }
+            */
+
+            /* 
+            [#034] Exercise - Odd/Even number split
+
+            List<int> odd = new List<int>();
+            List<int> even = new List<int>();
+
+            for (int i = 0; i <= 50; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    even.Add(i);
+                } else
+                {
+                    odd.Add(i);
+                }
+            }
+
+            Console.WriteLine("Printing even numbers:");
+            foreach (var item in even)
+            {
+                Console.Write($"{item} ");
+            }
+
+            Console.WriteLine("\nPrinting odd numbers:");
+            foreach (var item in odd)
+            {
+                Console.Write($"{item} ");
+            }
+            */
+
+            /*
+            [#035] Exercise - Array of multiples
+
+            int num = 10;
+            int length = 10;
+            int[] result = new int[length];
+            int counter = 0;
+
+            for (int i = 1; i <= result.Length; i++, counter++)
+            {
+                result[counter] = num * i;
+            }
+
+            foreach (var item in result)
+            {
+                Console.Write($"{item} ");
+            }
+            */
+
+            /*
+            [#036] Functions
+
+            WelcomeMessage();
+            */
+
+            /*
+            [#037] Void functions
+            
+            bool success = int.TryParse("123", out int result);
+            Console.WriteLine(success);
+
+            string test = "Hello";
+
+            StringBuilder sb = new StringBuilder();
+            */
+
+            /*
+            [#037] Return type functions
+
+            PrintIntroduction();
+
+            int[] numbers = new int[3];
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                numbers[i] = ReadNumberFromConsole();
+            }
+            
+            foreach (int item in numbers)
+            {
+                Console.Write($"{ item} ");
+            }
+            */
+
             Console.ReadLine();
+        }
+
+        static int ReadNumberFromConsole()
+        {
+            Console.Write("Enter a number: ");
+            return Convert.ToInt32(Console.ReadLine());
+        }
+
+        static void WelcomeMessage()
+        {
+            Console.WriteLine("Calling function");
+        }
+
+        static string ReturnName()
+        {
+            return "William";
+        }
+
+        static int ReturnAge()
+        {
+            return 27;
+        }
+
+        static void PrintIntroduction()
+        {
+            Console.WriteLine(ReturnName());
+            Console.WriteLine(ReturnAge());
         }
     }
 }
