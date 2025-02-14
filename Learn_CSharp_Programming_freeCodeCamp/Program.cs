@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace Learn_CSharp_Programming_freeCodeCamp
 {
@@ -736,7 +737,318 @@ namespace Learn_CSharp_Programming_freeCodeCamp
             }
             */
 
+            /*
+            [#038] Function parameters
+
+            Console.WriteLine(Add(50, 50));
+
+            int num = ReadInt("Enter a number");
+            Console.WriteLine(num);
+
+            int num1 = ReadInt("Angle");
+            Console.WriteLine(num1);
+
+            int firstNum = ReadInt("Enter first number");
+            int secondNum = ReadInt("Enter second number");
+
+            Console.WriteLine(Add(firstNum, secondNum));
+            */
+
+            /*
+            [#039] Optional parameters
+
+            int result = Add2(5);
+            Console.WriteLine(result);
+
+            PrintName();
+            */
+
+            /*
+            [#040] Named parameters 
+
+            string nameInput = "William";
+            int ageInput = 27;
+            string addressInput = "123 Somewhere Lane";
+
+            PrintDetails(   age: ageInput, 
+                            name: nameInput, 
+                            address: addressInput);
+            */
+
+            /*
+            [#041] Out parameters
+
+            int num = 0;
+            bool success = test(out num);
+            Console.WriteLine(num); // 5
+            Console.WriteLine(success); // True
+
+            List<string> shoppingList = new List<string>
+            {
+                "Coffee", "Milk"
+            };
+
+            Console.Write("Enter an item to search: ");
+            string search = Console.ReadLine();
+
+            Console.WriteLine(
+                FindInList(search, shoppingList, out int index) ? $"Found {search} at index {index}" : "Not found"
+                );
+            */
+
+            /*
+            [#042] Reference parameters
+
+            string name = "William";
+
+            Console.Write("Enter your new name: ");
+            string newName = Console.ReadLine();
+
+            if (ChangeName(ref name, newName)) {
+                Console.WriteLine($"Your new name is {name}!");
+            } else
+            {
+                Console.WriteLine("New name cannot be empty or null!");
+            }
+            */
+
+            /*
+            [#043] Exercise: Area of a Triangle
+
+            int width = ReadInt("Enter width");
+            int height = ReadInt("Enter height");
+
+            int result = CalcArea(width, height);
+
+            Console.WriteLine($"The area is {result}");
+            */
+
+            /*
+            [#044] Exercise: Sum of int Array
+
+            int[] numbers = new int[]
+            {
+                0, 1, 2, 3, 4, 5
+            };
+
+            int result = SumOfNumbers(numbers);
+
+            if (result > -1)
+                Console.WriteLine($"The total is {result}");
+            else
+                Console.WriteLine("Cannot add up an empty array!");
+
+            if (SumOfNumbers(numbers, out int total))
+                Console.WriteLine($"The total is {total}");
+            else
+                Console.WriteLine("Cannot add up an empty array!");
+            */
+
+
+            /*
+            [#045 / #046 / #047] Exception handling, Try...catch, and Printing error messages
+
+            int num = 0;
+            bool isChecking = true;
+
+            while (isChecking)
+            {
+                try
+                {
+                    Console.Write("Enter a number: ");
+                    num = Convert.ToInt32(Console.ReadLine());
+                    break;
+                }
+                catch (System.FormatException)
+                {
+                    Console.WriteLine("Incorrect format!");
+                }
+                catch (System.OverflowException)
+                {
+                    Console.WriteLine("Number too large!");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error: {e.Message}");
+                }
+            }
+
+            Console.WriteLine($"Successfully entered {num}");
+            */
+
+            /*
+            [#048] Exercise - Custom TryParse
+
+            bool isSuccessful = false;
+            try
+            {
+                Console.Write("Enter a number: ");
+                int num = Convert.ToInt32(Console.ReadLine());
+                success = true;
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            Console.WriteLine(isSuccessful ? "Cool!" : "Eh!");
+
+            Console.Write("Enter a number: ");
+            if (TryParse(Console.ReadLine(), out int result))
+            {
+                Console.WriteLine("Cool!");
+            } else
+            {
+                Console.WriteLine("Eh!");
+            }
+            */
+
+            /*
+            [#049] Debugging
+
+            string name = "William";
+            int age;
+            age = 27;
+
+            PrintDetails(name, age);
+
+            string message = ReadFromConsole("Enter anything: ");
+            Console.WriteLine(message);
+            */
+
             Console.ReadLine();
+        }
+
+        static string ReadFromConsole(string message)
+        {
+            Console.Write(message);
+            return Console.ReadLine();
+        }
+
+        static void PrintDetails(string name, int age)
+        {
+            Console.WriteLine($"{name} - {age}");
+            Console.WriteLine($"{name} - {age}");
+            Console.WriteLine($"{name} - {age}");
+            Console.WriteLine($"{name} - {age}");
+        }
+
+        static bool TryParse(string input, out int result)
+        {
+            result = -1;
+
+            try {
+                result = Convert.ToInt32(input);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        // better approach
+        static bool SumOfNumbers(int[] numbers, out int total)
+        {
+            total = 0;
+
+            if (numbers.Length <= 0)
+                return false;
+
+            foreach (int number in numbers)
+            {
+                total += number;
+            }
+
+            return true;
+        }
+
+        // note: downside, what if numbers list contains negative number?
+        static int SumOfNumbers(int[] numbers)
+        {
+            if (numbers.Length <= 0)
+                return -1;
+
+            int total = 0;
+
+            foreach (int number in numbers)
+            {
+                total += number;
+            }
+
+            return total;
+        }
+
+        static int CalcArea(int width, int height)
+        {
+            return (width * height) / 2;
+        }
+
+        static bool ChangeName(ref string name, string newName)
+        {
+            if (!string.IsNullOrEmpty(newName))
+            {
+                name = newName;
+                return true;
+            }
+            
+            return false;
+        }
+
+        static bool FindInList(string s, List<string> list, out int index)
+        {
+            index = -1;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].ToLower().Equals(s.ToLower()))
+                {
+                    index = i;
+                }
+            }
+
+            return index > -1;
+        }
+
+        static bool MyTryParse(string s, out int result)
+        {
+            result = 0;
+            return true;
+        }
+
+        static bool test(out int num)
+        {
+            num = 5;
+            return true;
+        }
+
+        static void PrintDetails(string name, int age, string address)
+        {
+            Console.WriteLine($"Name : {name}");
+            Console.WriteLine($"Age: {age}");
+            Console.WriteLine($"Address: {address}");
+        }
+
+        static void PrintName(string name = "William")
+        {
+            Console.WriteLine($"My name is {name}");
+        }
+
+        static int Add2(int a, [Optional] int b) // alternatively, can have "int b = default"
+        {
+            Console.WriteLine($"b = {b}");
+            return a + b;
+        }
+
+        static int ReadInt(string message)
+        {
+            Console.Write($"{message}: ");
+            return Convert.ToInt32(Console.ReadLine());
+        }
+
+        static int Add(int a, int b)
+        {
+            return a + b;
         }
 
         static int ReadNumberFromConsole()
