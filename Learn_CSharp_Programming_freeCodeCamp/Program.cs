@@ -12,6 +12,101 @@ namespace Learn_CSharp_Programming_freeCodeCamp
 {
     internal class Program
     {
+        // [#051] Structures
+        struct Person
+        {
+            public string name;
+            public int age;
+            public int birthMonth;
+            public int number;
+
+            public Person(string name, int age, int birthMonth, int number)
+            {
+                this.name = name;
+                this.age = age;
+                this.birthMonth = birthMonth;
+                this.number = number;
+            }
+        };
+
+        // [#052 / #053 / #054] Classes / Class functions / Class fields
+        class Person2
+        {
+            private string name;
+            private int age;
+
+            // [#055] Class properties (shorthand to setters and getters)
+            public string Name { 
+                get => name; 
+                set => name = !string.IsNullOrEmpty(value) ? value : "Invalid name"; 
+            }
+            public int Age {  
+                get => age; 
+                set => age = (value >= 0 && value <= 150) ? value : -1; 
+            }
+
+            public Person2(string name, int age)
+            {
+                this.name = name;
+                this.age = age;
+            }
+
+            /* Without arrow function
+            public void SetName(string name)
+            {
+                this.name = (!string.IsNullOrEmpty(name)) ? name : "Invalid name";
+            }
+
+            public string GetName()
+            {
+                return name;
+            }
+
+            public void SetAge(int age)
+            {
+                this.age = (age >= 0 && age <= 150) ? age : -1;
+            }
+
+            public int GetAge()
+            {
+                return age;
+            } 
+            
+            */
+
+            // With arrow function, similar to Javascript
+            public void SetName(string name) => this.name = (!string.IsNullOrEmpty(name)) ? name : "Invalid name";
+
+            public string GetName() => name;
+
+            public void SetAge(int age) => this.age = (age >= 0 && age <= 150) ? age : -1;
+
+            public int GetAge() => age;
+
+            public string ReturnDetails()
+            {
+                //return $"Name: {name}\nAge: {age}";
+                return $"Name: {Name}\nAge: {Age}";
+            }
+
+            // Override
+            public override string ToString()
+            {
+                return $"Name: {Name}\nAge: {Age}";
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is Person2)
+                {
+                    Person2 person = obj as Person2;
+                    return Name.Equals(person.Name) && Age == person.Age;
+                }
+
+                return false;
+            }
+        }
+
         static void Main(string[] args)
         {
             /* 
@@ -916,7 +1011,119 @@ namespace Learn_CSharp_Programming_freeCodeCamp
             Console.WriteLine(message);
             */
 
-            Console.ReadLine();
+            /*
+            [#050] Example: Fix logic error
+            
+            int age = 35;
+
+            if (age > 18) // && age < 30)
+            {
+                Console.WriteLine("Over 18");
+            } else if (age > 30) // && age < 50)
+            {
+                Console.WriteLine("Over 30");
+            } else if (age > 50)
+            {
+                Console.WriteLine("Over 50");
+            }
+            */
+
+            /* 
+            [#051] Structures
+            
+            Person person = ReturnPerson();
+            Console.WriteLine($"{person.name} - {person.age} - {person.birthMonth} - {person.number}");
+            */
+
+            /*
+            [#052 / #053 / #054] Classes / Class functions / Class fields
+
+            Person2 person = new Person2("William", 27); // calls the constructor
+
+            //Console.WriteLine(ReturnDetails(person));
+            Console.WriteLine(person.ReturnDetails());
+
+            person.SetName("New Name");
+            person.SetAge(20);
+            Console.WriteLine($"Your name is {person.GetName()} and your age is {person.GetAge()}");
+            */
+
+            /*
+            [#055] Class properties 
+
+            Person2 person = new Person2("William", 27);
+            Console.WriteLine(person.ReturnDetails());
+
+            person.Name = "Harry";
+            person.Age = 20;
+            Console.WriteLine($"Your name is {person.GetName()} and your age is {person.GetAge()}");
+            */
+
+            /*
+            [#056] Class ToString function override
+            */
+            Person2 person = new Person2("William", 27);
+            Console.WriteLine(person.ReturnDetails());
+            Console.WriteLine(person.ToString());
+            Console.WriteLine(person);
+
+            Person2 anotherPerson = new Person2("William", 27);
+
+            if (person.Equals(anotherPerson))
+            {
+                Console.WriteLine("Same");
+            } else
+            {
+                Console.WriteLine("Not same");
+            }
+
+            person.Name = "Harry";
+            person.Age = 20;
+
+            Console.WriteLine(person.ReturnDetails());
+
+            if (person.Equals(anotherPerson))
+            {
+                Console.WriteLine("Same");
+            }
+            else
+            {
+                Console.WriteLine("Not same");
+            }
+
+            Console.ReadLine(); 
+        }
+
+
+        static string ReturnDetails(Person person)
+        {
+            return $"Name: {person.name}\nAge: {person.age}";
+        }
+
+        static Person ReturnPerson()
+        {
+            Console.Write("Enter your name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter your age: ");
+            int age = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter your birthmonth: ");
+            int birthMonth = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter your number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            //Person person;
+
+            //person.name = name;
+            //person.age = age;
+            //person.birthMonth = birthMonth;
+            //person.number = number;
+
+            //return person;
+
+            return new Person(name, age, birthMonth, number);
         }
 
         static string ReadFromConsole(string message)
